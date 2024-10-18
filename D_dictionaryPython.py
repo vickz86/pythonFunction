@@ -4,13 +4,9 @@ exDi = {"name":"jon","age":22,"sex":"m"}
 exLi=["first second","third four","five six","seven height"]
 
 def PrintKeyValue(dic:dict):
-    """print all the key of a dictionary"""
-    #get all key in a list
-    keyList=list(dic.keys())
-    #iterate and print over keys
-    for key in keyList:
-        print(f"{key} is a present")
-
+    """print all the key and value of a dictionary"""
+    for k,v in dic.items():
+        print(f"{k}  :  {v}")
 
 def DicFromList(lis:list)->dict:
     """create a dictionnary from list,list MUST contain 2 element"""
@@ -27,8 +23,3 @@ def DicFromList(lis:list)->dict:
     return outDic
 
 
-
-# PrintKey(exDi)
-for k,v in exDi.items():
-    print(k)
-    print(v)

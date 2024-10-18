@@ -7,7 +7,8 @@ def OpenFile(filePath:str = "_data.txt")->list:
         outList = []
         #remove \n at the end of the line
         for line in rawList:
-            outList.append(line.removesuffix("\n"))
+            outList.append(line.strip())
         # return the list
         return outList
+
 
