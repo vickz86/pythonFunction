@@ -25,6 +25,20 @@ def DicFromList(lis: list) -> dict:
     return outDic
 
 
+def ListFromDic(dic: list) -> list:
+    """create a list from a dic ,"""
+
+    retList = []
+
+    for k, v in dic.items():
+
+        toAdd = str(k) + " " + str(v)
+        retList.append(toAdd)
+
+    # print(retList)
+    return retList
+
+
 def AddToDic(dic: dict) -> dict:
     """add an element to a dictionnary"""
 
@@ -52,6 +66,14 @@ def AddToDic(dic: dict) -> dict:
     return dic
 
 
-PrintKeyValue(exDi)
-AddToDic(exDi)
-PrintKeyValue(exDi)
+def ReplaceValue(dic: dict, replaceStr: str) -> dict:
+    # loop through element of a dictionary
+    for k, v in dic.items():
+        # check if value is equal to replaceStr
+        if str(v) == replaceStr:
+            print(f"the key {k} has value {v}, type the new value:")
+            newValue = input()
+            # assign new value to the dictionnary
+            dic[k] = newValue
+        # return the new dic
+    return dic
