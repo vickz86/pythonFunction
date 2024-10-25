@@ -1,4 +1,4 @@
-listTest = ["un deux", "troix quatre", "cinq six"]
+listTest = ["un deux", "troix quatre", "cinq six", "seven"]
 
 
 def OpenFile(filePath: str = "_data.txt") -> list:
@@ -16,11 +16,15 @@ def OpenFile(filePath: str = "_data.txt") -> list:
 
 
 def WriteFile(listWrite: list, filePath: str = "_data.txt"):
-    """write a list to a file"""
+    """write a list to a file, the list must only contain string"""
     writeList = []
 
     # add /n to all element of the list , but the last one
     for val, el in enumerate(listWrite):
+        # check all element are string
+        if isinstance(el, str) != True:
+            print(f"ERROR ,{el} is not of type string")
+
         # check if it is the last element
         if val == (len(listWrite) - 1):
             writeList.append(el)
@@ -31,3 +35,6 @@ def WriteFile(listWrite: list, filePath: str = "_data.txt"):
     with open(filePath, "w") as fObj:
         fObj.writelines(writeList)
     pass
+
+
+# WriteFile(listTest)

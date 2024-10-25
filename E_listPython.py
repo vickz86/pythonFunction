@@ -1,5 +1,7 @@
 my_list = ["apple", "banana", "cherry", "date", "elderberry", "peach"]
 
+exLi = ["hello;12;booby", "bonjour;12;james", "allo;15;billie"]
+
 
 def SliceList(inList: list, cutRelEnd: int = 1) -> tuple:
     """return 2 list from list, cut relative to the end"""
@@ -19,4 +21,41 @@ def SliceList(inList: list, cutRelEnd: int = 1) -> tuple:
     list1 = inList[:cutVal]
     # create list2
     list2 = inList[cutVal:]
-    print(list1, list2)
+
+    # return the tupple
+    return (list1, list2)
+
+
+def ListTuppleFromRawList(rawList: list) -> list:
+    """create a list from a raw list from file"""
+    finalOutList: list = []
+
+    for el in rawList:
+        elList: list = []
+        # split each str in rawList
+        elements = el.split(";")
+
+        # for each single element of each string
+        for part in elements:
+            try:
+                part = int(part)
+                elList.append(part)
+                continue
+            except:
+                pass
+
+            try:
+                part = float(part)
+                elList.append(part)
+                continue
+            except:
+                pass
+
+            elList.append(part)
+
+        finalOutList.append(tuple(elList))
+
+    print(finalOutList)
+
+
+ListTuppleFromRawList(exLi)
