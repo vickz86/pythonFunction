@@ -5,6 +5,11 @@ exList = ["un deux", "troix quatre", "cinq six", "sept huit"]
 
 def PathOpenFile(thePath: Path) -> list:
     """return a list from a pathFile"""
+    # check if the file exist
+    if not thePath.is_file():
+        print(f"the file {thePath} dont exist!")
+        raise TypeError(f"{thePath} dont exist")
+
     # list to return
     returnList: list = []
 
@@ -15,6 +20,11 @@ def PathOpenFile(thePath: Path) -> list:
 
 
 def PathWriteFile(listToWrite: list, thePath: Path) -> list:
+    # check if the file exist
+    if not thePath.is_file():
+        print(f"the file {thePath} dont exist!")
+        raise TypeError(f"{thePath} dont exist")
+
     "print a list to a filePath"
     with thePath.open(mode="w", encoding="utf-8") as f:
         outlist: list = []
@@ -24,7 +34,3 @@ def PathWriteFile(listToWrite: list, thePath: Path) -> list:
             for nb, el in enumerate(listToWrite)
         ]
         f.writelines(outlist)
-
-
-thePath = Path.cwd() / "_data2.txt"
-PathWriteFile(exList, thePath)

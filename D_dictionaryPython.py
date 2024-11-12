@@ -2,6 +2,8 @@
 exDi = {"name": "jon", "age": 22, "sex": "m"}
 # example of a list
 exLi = ["first second", "third four", "five six", "seven height"]
+# example of a string
+exStr = "python;6;powershell;5;javascript;3"
 
 
 def PrintKeyValue(dic: dict):
@@ -77,3 +79,35 @@ def ReplaceValue(dic: dict, replaceStr: str) -> dict:
             dic[k] = newValue
         # return the new dic
     return dic
+
+
+def DictionaryFromCommaSeparatedString(theString: str, separator: str = ";") -> dict:
+    """Create dictionary from a string in the format: 'python;6;powershell;5;javascript;3'"""
+
+    # Create an empty dictionary
+    returnDic = {}
+
+    # Split the string into a list based on separator
+    theList = theString.split(separator)
+
+    # Check that there is an even number of elements
+    if len(theList) % 2 != 0:
+        raise ValueError(
+            "Error: The input string must have an even number of elements (key-value pairs)."
+        )
+
+    # Loop through the list and add key-value pairs to the dictionary
+    for nb in range(0, len(theList), 2):
+        key = theList[nb]
+        try:
+            # Try to cast the value as an integer
+            value = int(theList[nb + 1])
+        except ValueError:
+            # If it's not an integer, store it as a string
+            value = theList[nb + 1]
+        returnDic[key] = value
+
+    return returnDic
+
+
+print(DictionaryFromCommaSeparatedString(exStr))

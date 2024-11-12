@@ -2,17 +2,18 @@ listTest = ["un deux", "troix quatre", "cinq six", "seven"]
 
 
 def OpenFile(filePath: str = "_data.txt") -> list:
-    """return a list object,each line is an element"""
-    with open(filePath, "r") as fObj:
-        # create the list object
-        rawList = fObj.readlines()
-        # create a new list obj
-        outList = []
-        # remove \n at the end of the line
-        for line in rawList:
-            outList.append(line.strip())
-        # return the list
+    """Returns a list where each line in the file is an element, with trailing newline characters removed."""
+    try:
+        with open(filePath, "r") as fObj:
+            # Read lines and strip trailing newline characters
+            outList = [line.strip() for line in fObj]
         return outList
+    except FileNotFoundError:
+        print(f"Error: The file '{filePath}' was not found.")
+        return []
+    except IOError:
+        print(f"Error: Could not read the file '{filePath}'.")
+        return []
 
 
 def WriteFile(listWrite: list, filePath: str = "_data.txt"):

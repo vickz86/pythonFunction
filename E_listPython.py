@@ -1,4 +1,13 @@
-my_list = ["apple", "banana", "cherry", "date", "elderberry", "peach"]
+my_list = [
+    "apple",
+    "banana",
+    "",
+    "cherry",
+    "date",
+    "",
+    "elderberry",
+    "peach",
+]
 
 exLi = ["hello;12;booby", "bonjour;12;james", "allo;15;billie"]
 
@@ -58,4 +67,26 @@ def ListTuppleFromRawList(rawList: list) -> list:
     print(finalOutList)
 
 
-ListTuppleFromRawList(exLi)
+def SeparateListAtEmptyLines(theList: list) -> list:
+    """Separate the list at empty elements in the list, return a list of lists"""
+    # Declare the return list
+    returnList: list = []
+
+    # Create the temp list
+    tempList: list = []
+
+    for nb, element in enumerate(theList):
+        # Check if empty
+        if element == "":
+            if tempList:  # Only append non-empty tempList
+                returnList.append(tempList)
+            tempList = []  # Reset tempList for the next sublist
+        else:
+            # If element is not empty, append to tempList
+            tempList.append(element)
+
+    # Add any remaining elements in tempList to returnList
+    if tempList:
+        returnList.append(tempList)
+
+    return returnList
